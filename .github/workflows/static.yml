@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Task Rewards with Real Earnings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #0056b3;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 20px;
+        }
+        .task {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .task h3 {
+            margin-top: 0;
+        }
+        .task button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .task button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .ads {
+            background-color: #f9f9f9;
+            border: 1px dashed #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .fake-balance {
+            background-color: #e9ffe9;
+            border: 1px solid #b2ffb2;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .withdraw-form {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Earn Virtual Rewards</h1>
+    </header>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#tasks">Tasks</a>
+        <a href="#withdraw">Withdraw</a>
+    </nav>
+    <div class="container">
+        <section id="about">
+            <h2>About Us</h2>
+            <p>This platform is a virtual simulation where you can complete tasks like watching ads, exploring articles, and earn virtual dollars (not real money). This is for educational purposes only.</p>
+        </section>
+
+        <section id="tasks">
+            <h2>Available Tasks</h2>
+            <div class="ads">Ad Banner Placeholder</div>
+            <div class="task">
+                <h3>Watch an Ad</h3>
+                <p>Earn $0.5 (virtual) by watching a short ad!</p>
+                <button onclick="earnReward(0.5); recordRealEarnings(0.1)">Start Task</button>
+            </div>
+            <div class="task">
+                <h3>Read an Article</h3>
+                <p>Earn $0.5 (virtual) by reading an article for 1 minute!</p>
+                <button onclick="earnReward(0.5); recordRealEarnings(0.1)">Start Task</button>
+            </div>
+            <div class="task">
+                <h3>Watch a Video</h3>
+                <p>Earn $0.5 (virtual) by watching a 2-minute video!</p>
+                <button onclick="earnReward(0.5); recordRealEarnings(0.15)">Start Task</button>
+            </div>
+            <div class="task">
+                <h3>Click a Sponsored Link</h3>
+                <p>Earn $0.5 (virtual) by clicking on a sponsor's link!</p>
+                <button onclick="earnReward(0.5); recordRealEarnings(0.2)">Start Task</button>
+            </div>
+        </section>
+
+        <section id="withdraw">
+            <h2>Withdraw Funds</h2>
+            <div class="withdraw-form">
+                <p>Your current virtual balance: <span id="balance">$0.00</span></p>
+                <form>
+                    <label for="payment-method">Select Payment Method:</label><br>
+                    <select id="payment-method">
+                        <option value="paypal">PayPal</option>
+                        <option value="card">Credit/Debit Card</option>
+                    </select><br><br>
+                    <label for="account">Enter Account Details:</label><br>
+                    <input type="text" id="account" placeholder="Account or Card Number"><br><br>
+                    <button type="button" onclick="fakeWithdraw()">Submit Withdrawal</button>
+                </form>
+            </div>
+        </section>
+
+        <div class="fake-balance" id="fake-balance">
+            Note: This is a virtual balance. Withdrawals are not processed.
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Virtual Rewards Platform. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let balance = 0;
+        let realEarnings = 0;
+
+        function earnReward(amount) {
+            balance += amount;
+            document.getElementById('balance').innerText = `$${balance.toFixed(2)}`;
+            alert(`You earned $${amount.toFixed(2)}! Your new balance is $${balance.toFixed(2)}`);
+        }
+
+        function recordRealEarnings(amount) {
+            realEarnings += amount;
+            console.log(`Real earnings for the owner: $${realEarnings.toFixed(2)}`);
+        }
+
+        function fakeWithdraw() {
+            const method = document.getElementById('payment-method').value;
+            const account = document.getElementById('account').value;
+
+            if (account.trim() === '') {
+                alert('Please enter account details.');
+                return;
+            }
+
+            alert(`Your withdrawal request to ${method} (${account}) was submitted. Note: This is a simulation, and no funds will be transferred.`);
+        }
+    </script>
+</body>
+</html>
+
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
